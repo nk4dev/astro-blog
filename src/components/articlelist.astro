@@ -1,0 +1,80 @@
+---
+import { createClient } from "microcms-js-sdk";
+
+const client = createClient({
+  serviceDomain: "nknighta-github",
+  apiKey: import.meta.env.MICROCMS_API_KEY,
+});
+
+let articles = [];
+try {
+  const res = await client.getList({ endpoint: "blogs" });
+  articles = res.contents;
+} catch (e) {
+  articles = [];
+}
+---
+
+<div class="article-list">
+  <h1>Articles</h1>
+  <div class="article-grid">
+    {
+      Array.isArray(articles) &&
+        articles.map((article) => (
+          <div class="article-card">
+            <a href={`/articles/${article.id}`}>
+              <div class="image-container">
+                {article.eyecatch && article.eyecatch.url ? (
+                  <img src={article.eyecatch.url} alt={article.title + ' eyecatch'} style="width:100%;height:100%;object-fit:cover;" />
+                ) : (
+                  <p>no image</p>
+                )}
+              </div>
+              {article.title}
+            </a>
+          </div>
+        ))
+    }
+  </div>
+
+  <style>
+    .article-list {
+      margin: 2rem 0;
+      padding: 0 3rem;
+    }
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin: 2rem;
+    }
+    .image-container {
+      width: 100%;
+      height: 150px;
+      overflow: hidden;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .article-card {
+      border-radius: 0.5rem;
+      background-color: #10004a;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+      padding: 1.5rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: box-shadow 0.2s;
+    }
+    .article-card:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.13);
+    }
+    a {
+      color: #dfadff;
+      background: none;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 400;
+      padding: 0;
+    }
+  </style>
+</div>

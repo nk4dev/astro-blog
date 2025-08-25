@@ -1,28 +1,118 @@
 ---
-import Header from '../components/Header.astro';
-import "../styles/global.css"
+import Header from "../components/Header.astro";
+import "../styles/global.css";
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<Header />
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://nknighta.me/favicon.ico"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="author" content="nknighta" />
+    <title>(^^</title>
+  </head>
+  <body>
+    <Header />
+    <slot />
+  </body>
+  <footer>
+    <p>&copy; 2025 nknighta. All rights reserved.</p>
+    <div style="margin-top: 1rem;">
+      <button share-on-x class="share-button-x"> Share on X </button>
+    </div>
+    <h3>Social Accounts:</h3>
+    <div class="social-links">
+      <div class="links">
+        <a href="https://nknighta.me/g" target="_blank">GitHub</a>
+      </div>
+      <div class="links">
+        <a href="https://nknighta.me/x" target="_blank">X</a>
+      </div>
+      <div class="links">
+        <a href="https://nknighta.me/i" target="_blank">Instagram</a>
+      </div>
+    </div>
+    <h3>Another Website:</h3>
+    <div class="social-links">
+      <div class="links">
+        <a href="https://varius.technology" target="_blank">VARIUS</a>
+      </div>
+      <div class="links">
+        <a href="https://nknighta.me/" target="_blank">Home Page</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    window.onload = (event) => {
+      document.title = "Blog | nknighta";
+    };
+
+    const shareButton = document.querySelector("button[share-on-x]");
+
+    shareButton?.addEventListener("click", () => {
+      const url = window.location.href;
+      const text = document.title;
+      const shareUrl = `https://x.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}&hashtags=nknighta,nk4dev,diary`;
+      window.open(shareUrl, "_blank");
+    });
+  </script>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    background-color: #0a0021;
+    color: #ffffff;
+  }
+
+  .share-button-x {
+    background-color: #000;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  footer {
+    background-color: #0a0021;
+    color: #a8a8a8;
+    padding: 2rem;
+    text-align: center;
+  }
+  footer h3 {
+    margin: 10px 0;
+    font-weight: 400;
+  }
+  .social-links {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+  .links {
+    border-left: 1px solid #a8a8a8;
+    border-right: 1px solid #a8a8a8;
+    padding: 0.5rem 1rem;
+    margin: 0 1rem;
+  }
+  .links:hover {
+    border-left: 1px solid rgba(255, 255, 255, 0.8);
+    border-right: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: -2px 0 5px rgba(255, 255, 255, 0.3), 2px 0 5px rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+  }
+  a {
+    color: #a8a8a8;
+    text-decoration: none;
+  }
 </style>
