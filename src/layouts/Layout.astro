@@ -1,13 +1,17 @@
 ---
+import { undefined } from "astro:schema";
 import Header from "../components/Header.astro";
 import "../styles/global.css";
+
+const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
+    <title>{title === undefined ? "nknighta blog" : title + " | nknighta blog"}</title>
     <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8" />
     <link
       rel="icon"
       type="image/svg+xml"
@@ -15,7 +19,17 @@ import "../styles/global.css";
     />
     <meta name="generator" content={Astro.generator} />
     <meta name="author" content="nknighta" />
-    <title>(^^</title>
+    <meta
+      name="description"
+      content="nknighta's development and another diary"
+      />
+      <meta property="og:title" content={title === undefined ? "nknighta blog" : title + " | nknighta blog"} />
+      <meta property="og:description" content="nknighta's development and another diary" />
+      <meta property="og:image" content={`https://ogp-img-gen.vercel.app/api/img-gen?title=${title === undefined ? "nknighta blog" : title + " | nknighta blog"}&host=blog.nknighta.me`} />
+      <meta property="og:url" content={Astro.url} />
+      <meta property="og:type" content="website" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:creator" content="@nknighta" />
   </head>
   <body>
     <Header />
@@ -49,12 +63,7 @@ import "../styles/global.css";
     </div>
   </footer>
   <script>
-    window.onload = (event) => {
-      document.title = "Blog | nknighta";
-    };
-
     const shareButton = document.querySelector("button[share-on-x]");
-
     shareButton?.addEventListener("click", () => {
       const url = window.location.href;
       const text = document.title;
@@ -108,7 +117,9 @@ import "../styles/global.css";
   .links:hover {
     border-left: 1px solid rgba(255, 255, 255, 0.8);
     border-right: 1px solid rgba(255, 255, 255, 0.8);
-    box-shadow: -2px 0 5px rgba(255, 255, 255, 0.3), 2px 0 5px rgba(255, 255, 255, 0.3);
+    box-shadow:
+      -2px 0 5px rgba(255, 255, 255, 0.3),
+      2px 0 5px rgba(255, 255, 255, 0.3);
     transition: all 0.3s ease;
   }
   a {
