@@ -25,6 +25,7 @@ jobs:
         env:
           MICROCMS_DOMAIN: ${{ secrets.MICROCMS_DOMAIN }}
           MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
+          RUN_MODE: ${{ secrets.RUN_MODE }}
         # with:
           # path: . # リポジトリ内のAstroプロジェクトのルートロケーション。（オプション）
           # node-version: 20 # サイト構築に使用するNodeのバージョン。デフォルトは20です。（オプション）
