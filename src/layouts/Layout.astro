@@ -37,11 +37,9 @@ const { title } = Astro.props;
       <meta name="twitter:image" content={`https://ogp-img-gen.vercel.app/api/img-gen?text=${title === undefined ? "nknighta blog" : title + " | nknighta blog"}&host=blog.nknighta.me`} />
   </head>
   <body>
-    <p>
       {import.meta.env.RUN_MODE === "production"
-        ? "You are in Production Mode."
+        ? null
         : "You are in Development Mode."}
-    </p>
     <Header />
     <slot />
   </body>
